@@ -1,0 +1,506 @@
+<SelScreen>: 
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.size
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size: root.size
+
+            Image:
+                source:"red_denchu.png"
+                allow_stretch: True
+                kep_ratio: True
+                size_hint_y:1 
+
+            Image:
+                source:"yellow_denchu.jpeg"
+                allow_stretch: True
+                kep_ratio: True 
+                size_hint_y:1
+
+            Image:
+                source:"green_denchu.jpeg"
+                allow_stretch: True
+                kep_ratio: True
+                size_hint_y:1
+
+        Label:
+            text: 'モンスターを一体選択してください。'
+            size_hint_y:0.5
+        
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size: root.size
+
+            Button:
+                text:'赤色デンチュウ' 
+                on_press:
+                    root.manager.current = 'decision_red'
+                    root.pressRed()
+                size_hint_y:1
+
+            Button:
+                text: '黄色デンチュウ'
+                on_press:
+                    root.manager.current = 'decision_yellow'
+                size_hint_y:1
+
+            Button:
+                text: '緑色デンチュウ'
+                on_press:
+                    root.manager.current = 'decision_green'
+                size_hint_y:1
+            
+
+<DecScreen_red>　
+    name:'decision_red'
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.size
+
+        Image:
+            source:"red_denchu.png"
+            allow_stretch: True
+            kep_ratio: True
+            size_hint_y:1
+
+        Label:
+            id: label_up
+            text:'このモンスターでよろしいですか？'
+            size_hint_y:0.5
+
+        Label:
+            id: label_down
+            text:'赤色デンチュウ：緑色のモンスターに強く、黄色のモンスターに弱い'
+            size_hint_y:0.5 
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size: root.size
+
+            Button
+                text:'選び直す！'
+                size_hint_y:1
+                on_press:
+                    root.manager.current = 'select'
+
+            Button
+                text:'赤色デンチュウに決めた！'
+                size_hint_y:1
+                on_press:
+                    root.manager.current = 'battle'
+
+<DecScreen_yellow>　
+    name:'decision_yellow'
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.size
+
+        Image:
+            source:"yellow_denchu.jpeg"
+            allow_stretch: True
+            kep_ratio: True
+            size_hint_y:1
+
+        Label:
+            id: label_up
+            text:'このモンスターでよろしいですか？'
+            size_hint_y:0.5
+
+        Label:
+            id: label_down
+            text:'黄色デンチュウ：赤色のモンスターに強く、緑色のモンスターに弱い'
+            size_hint_y:0.5 
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size: root.size
+
+            Button
+                text:'選び直す！'
+                size_hint_y:1
+                on_press:
+                    root.manager.current = 'select'
+
+            Button
+                text:'黄色デンチュウに決めた！'
+                size_hint_y:1
+                on_press:
+                    root.manager.current = 'battle'
+
+<DecScreen_green>　
+    name:'decision_green'
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.size
+
+        Image:
+            source:"green_denchu.jpeg"
+            allow_stretch: True
+            kep_ratio: True
+            size_hint_y:1
+
+        Label:
+            id: label_up
+            text:'このモンスターでよろしいですか？'
+            size_hint_y:0.5
+
+        Label:
+            id: label_down
+            text:'緑色デンチュウ：黄色のモンスターに強く、赤色のモンスターに弱い'
+            size_hint_y:0.5 
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size: root.size
+
+            Button
+                text:'選び直す！'
+                size_hint_y:1
+                on_press:
+                    root.manager.current = 'select'
+
+            Button
+                text:'緑色デンチュウに決めた！'
+                size_hint_y:1
+                on_press:
+                    root.manager.current = 'battle'
+
+<BatScreen>
+    name:'battle'
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.size
+
+        Image:
+            source:root.Image
+            allow_stretch: True
+            kep_ratio: True
+            size_hint_y:3
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size: root.size
+
+            Label:
+                text:'デンチュウのHP:'+root.den_HP 
+                size_hint_y:0.2
+            
+            Label:
+                text:'相手モンスターのHP:'+root.mon_HP
+                size_hint_y:0.2
+
+        Label:
+            text:root.oppName+'が現れた！'
+            size_hint_y:0.3
+
+        Label:
+            text:'コマンドを選択してください。'
+            size_hint_y:0.3
+
+       
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size: root.size
+
+            Button
+                text:'アイテム'
+                size_hint_y:1
+                on_press:
+                    root.manager.current = 'aitem'
+
+            Button
+                text:'戦う'
+                size_hint_y:1
+                on_press:
+                    root.manager.current = 'skill'
+            
+            Button
+                text:'逃げる'
+                size_hint_y:1
+                on_press:
+                    root.manager.current = 'escape'
+
+<AitemScreen>
+    name:'aitem'
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.size
+
+        Image:
+            source:root.Image
+            allow_stretch: True
+            kep_ratio: True
+            size_hint_y:2.5
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size: root.size
+
+            Label:
+                text:'デンチュウのHP:'+root.den_HP 
+                size_hint_y:0.2
+            
+            Label:
+                text:'相手モンスターのHP:'+root.mon_HP
+                size_hint_y:0.2
+
+        Label:
+            text:root.aitemText1
+            size_hint_y:0.3
+
+        Label:
+            text:root.aitemText2
+            size_hint_y:0.3
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size: root.size
+
+            Button
+                text:'戻る'
+                size_hint_x:0.3
+                on_press:
+                    root.manager.current = 'battle'
+
+            Button
+                text:'おでん'
+                on_press:
+                    root.pressOden()
+                size_hint_y:1
+
+            Button
+                text:'バッテリー'
+                on_press:
+                    root.pressBatt()
+                size_hint_y:1
+
+            Button
+                text:'相手のターンへ'
+                on_press:
+                    root.manager.current = 'enemy_turn'
+                size_hint_x:0.5
+
+<SkillScreen>
+    name:'skill'
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.size
+
+        Image:
+            source:root.Image
+            allow_stretch: True
+            kep_ratio: True
+            size_hint_y:2
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size: root.size
+
+            Label:
+                text:'デンチュウのHP:'+root.den_HP 
+                size_hint_y:0.2
+            
+            Label:
+                text:'相手モンスターのHP:'+root.mon_HP
+                size_hint_y:0.2
+
+        Label:
+            text:root.skillText1
+            size_hint_y:0.3
+
+        Label:
+            text:root.skillText2
+            size_hint_y:0.3
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size: root.size
+
+            Button
+                text:root.skill1
+                on_press:
+                    root.pressSkill1()
+                size_hint_y:1
+
+            Button
+                text:root.skill2
+                on_press:
+                    root.pressSkill2()
+                size_hint_y:1
+
+            Button
+                text:'相手のターンへ'
+                size_hint_y:1
+                size_hint_x:0.5
+                on_press:
+                    root.manager.current = 'enemy_turn'
+    
+        BoxLayout:
+            orientation: 'horizontal'
+            size: root.size
+
+            Button
+                text:root.skill3
+                on_press:
+                    root.pressSkill3()
+                size_hint_y:1
+
+            Button
+                text:root.skill4
+                on_press:
+                    root.pressSkill4()
+                size_hint_y:1
+
+            Button
+                text:'戻る'
+                size_hint_y:1
+                size_hint_x:0.5
+                on_press:
+                    root.manager.current = 'battle'
+
+<EscapeScreen>
+    name:'escape'
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.size
+
+        Image:
+            source:root.Image
+            allow_stretch: True
+            kep_ratio: True
+            size_hint_y:2
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size: root.size
+
+            Label:
+                text:'デンチュウのHP:'+root.den_HP 
+                size_hint_y:0.2
+            
+            Label:
+                text:'相手モンスターのHP:'+root.mon_HP
+                size_hint_y:0.2
+
+        Label:
+            text:'戦闘から離脱した場合はプレイヤーの敗北となります。'
+            size_hint_y:0.3
+
+        Label:
+            text:'戦闘から離脱しますか？'
+            size_hint_y:0.3
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size: root.size
+
+            Button
+                text:'戻る'
+                on_press:
+                    root.manager.current = 'battle'   
+                size_hint_y:1
+
+            Button
+                text:'逃げる!'
+                on_press:
+                    root.manager.current = 'esc_defeat'
+                size_hint_y:1
+
+<EscDefeatScreen>
+    name:'esc_defeat'
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.size
+
+        Image:
+            source:root.Image
+            allow_stretch: True
+            kep_ratio: True
+            size_hint_y:2
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size: root.size
+
+            Label:
+                text:'デンチュウのHP:'+root.den_HP 
+                size_hint_y:0.2
+            
+            Label:
+                text:'相手モンスターのHP:'+root.mon_HP
+                size_hint_y:0.2
+
+        Label:
+            text:root.escDefeatText
+            size_hint_y:0.3
+
+        Label:
+            text:'プレイヤーの敗北です。'
+            size_hint_y:0.3
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size: root.size
+
+            Button
+                text:'戻る' 
+                on_press:
+                    root.pressButton() 
+                size_hint_y:1
+
+            Button
+                text:'逃げる!'
+                on_press:
+                    root.pressButton()
+                size_hint_y:1
+
+<EnemyTurnScreen>
+    name:'enemy_turn'
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.size
+
+        Image:
+            source:root.Image
+            allow_stretch: True
+            kep_ratio: True
+            size_hint_y:2
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size: root.size
+
+            Label:
+                text:'デンチュウのHP:'+root.den_HP 
+                size_hint_y:0.2
+            
+            Label:
+                text:'相手モンスターのHP:'+root.mon_HP
+                size_hint_y:0.2
+
+        Label:
+            text:'相手のターンです。'
+            size_hint_y:0.3
+
+        Label:
+            text:root.oppName + 'の' + root.selectSkill + '!デンチュウに30ダメージ!'
+            size_hint_y:0.3
+
+        Button:
+            text:'自分のターンへ'
+            on_press:
+                root.manager.current='battle'
+
+        
+
+
+
+
+
+
+
+        
